@@ -76,10 +76,10 @@ begin
       ACodigoAgencia := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0');
       ANumeroConta := Formatar(Cedente.ContaBancaria.NumeroConta,5,false,'0');
       ACarteira := Formatar(Carteira,3,false,'0');
-      ANossoNumero := Formatar(NossoNumero,8,false,'0');
+      ANossoNumero := Formatar(NossoNumero,10,false,'0');
    end;
 
-   ADigitoNossoNumero := Modulo10(ACodigoAgencia + ANumeroConta + ACarteira + ANossoNumero);
+   ADigitoNossoNumero := Modulo10(ACodigoAgencia + ACarteira + ANossoNumero);
 
    Result := ADigitoNossoNumero;
 end;
@@ -91,7 +91,8 @@ var
    ADigitoNossoNumero,
    ACodigoAgencia,
    ANumeroConta,
-   ADigitoAgenciaConta: string;
+   ADigitoAgenciaConta,
+   ARange: string;
 begin
 
    {
@@ -118,9 +119,10 @@ begin
       ANumeroConta := Formatar(Cedente.ContaBancaria.NumeroConta,5,false,'0');
       ADigitoNossoNumero := Modulo10(ACodigoAgencia + ANumeroConta + ACarteira + ANossoNumero);
       ADigitoAgenciaConta := Modulo10(ACodigoAgencia + ANumeroConta);
+      ARange := Formatar(Range,11,false,'0');
    end;
 
-   Result := ACarteira + ANossoNumero + ADigitoNossoNumero + ACodigoAgencia + ANumeroConta + ADigitoAgenciaConta + '000';
+   Result := ACodigoAgencia + ACarteira + '1557502' + ANossoNumero + ADigitoNossoNumero;
 end;
 
 procedure TRLBanco707.FormatarBoleto(ATitulo: TRLBTitulo; var AAgenciaCodigoCedente, ANossoNumero, ACarteira, AEspecieDocumento: string);
@@ -128,7 +130,8 @@ begin
   with ATitulo do
   begin
     AAgenciaCodigoCedente := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0') + '/' + Formatar(Cedente.CodigoCedente,5,false,'0') + '-' + Cedente.DigitoCodigoCedente;
-    ANossoNumero := Formatar(Carteira,3,false,'0') + '/' + Formatar(NossoNumero,8,false,'0') + '-' + DigitoNossoNumero;
+    //ANossoNumero := Formatar(Carteira,3,false,'0') + '/' + Formatar(NossoNumero,8,false,'0') + '-' + DigitoNossoNumero;
+    ANossoNumero := Formatar(NossoNumero,8,false,'0');
     ACarteira := Formatar(Carteira,3,false,'0');
     AEspecieDocumento := '';
     case EspecieDocumento of
@@ -217,15 +220,16 @@ begin
          Registro := '1'; // IDENTIFICAÇÃO DO REGISTRO TRANSAÇÃO
          Registro := Registro + Formatar(ACedenteTipoInscricao,2,false,'0'); // TIPO DE INSCRIÇÃO DA EMPRESA
          Registro := Registro + Formatar(Titulos[NumeroRegistro].Cedente.NumeroCPFCGC,14,false,'0'); // Nº DE INSCRIÇÃO DA EMPRESA (CPF/CGC)
-         Registro := Registro + '190644331000';
+         Registro := Registro + '190644331000        ';
          {Registro := Registro + Formatar(Titulos[NumeroRegistro].Cedente.ContaBancaria.CodigoAgencia,4,false,'0'); // AGÊNCIA MANTENEDORA DA CONTA
          Registro := Registro + '00'; // COMPLEMENTO DE REGISTRO
          Registro := Registro + Formatar(Titulos[NumeroRegistro].Cedente.ContaBancaria.NumeroConta,5,false,'0'); // NÚMERO DA CONTA CORRENTE DA EMPRESA
          Registro := Registro + Formatar(Titulos[NumeroRegistro].Cedente.ContaBancaria.DigitoConta,1); // DÍGITO DE AUTO CONFERÊNCIA AG/CONTA EMPRESA}
-         Registro := Registro + Formatar('',8,true,' '); // COMPLEMENTO DE REGISTRO/CÓD.INSTRUÇÃO/ALEGAÇÃO A SER CANCELADA
+
          Registro := Registro + Formatar('',25,true,' '); // IDENTIFICAÇÃO DO TÍTULO NA EMPRESA
-         //Registro := Registro + Formatar(Titulos[NumeroRegistro].NossoNumero,8,false,'0'); // IDENTIFICAÇÃO DO TÍTULO NO BANCO
-         Registro := Registro + Formatar('0',8,false,'0'); // IDENTIFICAÇÃO DO TÍTULO NO BANCO
+
+         Registro := Registro + Formatar(Titulos[NumeroRegistro].NossoNumero,8,false,'0'); // IDENTIFICAÇÃO DO TÍTULO NO BANCO
+         //Registro := Registro + Formatar('0',8,false,'0'); // IDENTIFICAÇÃO DO TÍTULO NO BANCO
          Registro := Registro + Formatar(' ',13,false,' '); // QUANTIDADE DE MOEDA VARIÁVEL
          Registro := Registro + Formatar('',3,false,' '); // NÚMERO DA CARTEIRA NO BANCO
          Registro := Registro + Formatar('',21); // IDENTIFICAÇÃO DA OPERAÇÃO NO BANCO

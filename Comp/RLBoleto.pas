@@ -423,6 +423,8 @@ type
       FCDS: TClientDataSet;
       fChaveAcesso: string;
       {Chave de Acesso}
+      fRange: string;
+      {Range}
       procedure SetInstrucoes(Texto: TStringList);
       procedure SetVersao(Value: ShortString);
       {Retorna um objeto do tipo TRLCobCodBar contendo linha digitável e imagem do código de barras baseados nos dados do título
@@ -483,6 +485,7 @@ type
       property NossoNumero : string read fNossoNumero write fNossoNumero;
       property NumeroDocumento : string read fNumeroDocumento write fNumeroDocumento;
       property ChaveAcesso : string read fChaveAcesso write fChaveAcesso;
+      property Range : string read fRange write fRange;
       property Carteira : string read fCarteira write fCarteira;
       property AceiteDocumento : TAceiteDocumento read fAceiteDocumento write fAceiteDocumento;
       property EspecieDocumento: TEspecieDocumento read fEspecieDocumento write fEspecieDocumento;
@@ -1134,6 +1137,7 @@ begin
   DataMoraJuros := ATitulo.DataMoraJuros;
   DataProtesto := ATitulo.DataProtesto;
   DataBaixa := ATitulo.DataBaixa;
+  Range := ATitulo.Range;
   ChaveAcesso := ATitulo.ChaveAcesso;
   ValorDocumento := ATitulo.ValorDocumento;
   ValorDespesaCobranca := ATitulo.ValorDespesaCobranca;

@@ -1134,6 +1134,7 @@ begin
   DataMoraJuros := ATitulo.DataMoraJuros;
   DataProtesto := ATitulo.DataProtesto;
   DataBaixa := ATitulo.DataBaixa;
+  ChaveAcesso := ATitulo.ChaveAcesso;
   ValorDocumento := ATitulo.ValorDocumento;
   ValorDespesaCobranca := ATitulo.ValorDespesaCobranca;
   ValorAbatimento := ATitulo.ValorAbatimento;
