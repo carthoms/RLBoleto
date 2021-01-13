@@ -129,9 +129,15 @@ procedure TRLBanco707.FormatarBoleto(ATitulo: TRLBTitulo; var AAgenciaCodigoCede
 begin
   with ATitulo do
   begin
-    AAgenciaCodigoCedente := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0') + '/' + Formatar(Cedente.CodigoCedente,5,false,'0') + '-' + Cedente.DigitoCodigoCedente;
-    //ANossoNumero := Formatar(Carteira,3,false,'0') + '/' + Formatar(NossoNumero,8,false,'0') + '-' + DigitoNossoNumero;
-    ANossoNumero := Formatar(NossoNumero,8,false,'0');
+    AAgenciaCodigoCedente := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0') + '-' +
+        Formatar(Cedente.ContaBancaria.fDigitoAgencia,1,false,'0') + '/' +
+        Formatar(Cedente.ContaBancaria.fNumeroConta,7,false,'0') + '-' +
+        Formatar(Cedente.ContaBancaria.fDigitoConta,1,false,'0');
+
+//     + '/' + Formatar(Cedente.CodigoCedente,5,false,'0') + '-' + Cedente.DigitoCodigoCedente;
+
+    ANossoNumero := Formatar(Carteira,3,false,'0') + '/' + Formatar(NossoNumero,8,false,'0') + '-' + DigitoNossoNumero;
+    //ANossoNumero := Formatar(NossoNumero,8,false,'0');
     ACarteira := Formatar(Carteira,3,false,'0');
     AEspecieDocumento := '';
     case EspecieDocumento of
@@ -228,12 +234,13 @@ begin
 
          Registro := Registro + Formatar('',25,true,' '); // IDENTIFICAÇÃO DO TÍTULO NA EMPRESA
 
+         //Registro := Registro + Formatar(a
          Registro := Registro + Formatar(Titulos[NumeroRegistro].NossoNumero,8,false,'0'); // IDENTIFICAÇÃO DO TÍTULO NO BANCO
          //Registro := Registro + Formatar('0',8,false,'0'); // IDENTIFICAÇÃO DO TÍTULO NO BANCO
          Registro := Registro + Formatar(' ',13,false,' '); // QUANTIDADE DE MOEDA VARIÁVEL
-         Registro := Registro + Formatar('',3,false,' '); // NÚMERO DA CARTEIRA NO BANCO
-         Registro := Registro + Formatar('',21); // IDENTIFICAÇÃO DA OPERAÇÃO NO BANCO
-         Registro := Registro + '3'; // CÓDIGO DA CARTEIRA
+         Registro := Registro + Formatar('',24,false,' '); // NÚMERO DA CARTEIRA NO BANCO
+         //Registro := Registro + Formatar('6',1); // IDENTIFICAÇÃO DA OPERAÇÃO NO BANCO
+         Registro := Registro + '6'; // CÓDIGO DA CARTEIRA
 
          {Tipo de ocorrência}
          case Titulos[NumeroRegistro].TipoOcorrencia of
