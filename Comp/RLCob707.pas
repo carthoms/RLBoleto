@@ -115,11 +115,10 @@ begin
    begin
       ACarteira := Formatar(Carteira,3,false,'0');
       ACodigoAgencia := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0');
-      ANossoNumero := Formatar(NossoNumero,8,false,'0');
+      ANossoNumero := Formatar(NossoNumero,10,false,'0');
       ANumeroConta := Formatar(Cedente.ContaBancaria.NumeroConta,5,false,'0');
-      ADigitoNossoNumero := Modulo10(ACodigoAgencia + ANumeroConta + ACarteira + ANossoNumero);
+      ADigitoNossoNumero := Modulo10(ACodigoAgencia + ACarteira + ANossoNumero);
       ADigitoAgenciaConta := Modulo10(ACodigoAgencia + ANumeroConta);
-      ARange := Formatar(Range,11,false,'0');
    end;
 
    Result := ACodigoAgencia + ACarteira + '1557502' + ANossoNumero + ADigitoNossoNumero;

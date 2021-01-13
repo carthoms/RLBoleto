@@ -115,11 +115,10 @@ begin
    begin
       ACarteira := Formatar(Carteira,3,false,'0');
       ACodigoAgencia := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0');
-      ANossoNumero := Formatar(NossoNumero,8,false,'0');
+      ANossoNumero := Formatar(NossoNumero,10,false,'0');
       ANumeroConta := Formatar(Cedente.ContaBancaria.NumeroConta,5,false,'0');
       ADigitoNossoNumero := Modulo10(ACodigoAgencia + ANumeroConta + ACarteira + ANossoNumero);
       ADigitoAgenciaConta := Modulo10(ACodigoAgencia + ANumeroConta);
-      ARange := Formatar(Range,11,false,'0');
    end;
 
    Result := ACodigoAgencia + ACarteira + '1557502' + ANossoNumero + ADigitoNossoNumero;
@@ -239,8 +238,8 @@ begin
          //Registro := Registro + Formatar('0',8,false,'0'); // IDENTIFICAÇÃO DO TÍTULO NO BANCO
          Registro := Registro + Formatar(' ',13,false,' '); // QUANTIDADE DE MOEDA VARIÁVEL
          Registro := Registro + Formatar('',24,false,' '); // NÚMERO DA CARTEIRA NO BANCO
-         Registro := Registro + Formatar('6',1); // IDENTIFICAÇÃO DA OPERAÇÃO NO BANCO
-         Registro := Registro + '3'; // CÓDIGO DA CARTEIRA
+         //Registro := Registro + Formatar('6',1); // IDENTIFICAÇÃO DA OPERAÇÃO NO BANCO
+         Registro := Registro + '6'; // CÓDIGO DA CARTEIRA
 
          {Tipo de ocorrência}
          case Titulos[NumeroRegistro].TipoOcorrencia of
