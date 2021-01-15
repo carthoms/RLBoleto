@@ -76,7 +76,7 @@ begin
       ACodigoAgencia := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0');
       ANumeroConta := Formatar(Cedente.ContaBancaria.NumeroConta,5,false,'0');
       ACarteira := Formatar(Carteira,3,false,'0');
-      ANossoNumero := Formatar(NossoNumero,10,false,'0');
+      ANossoNumero := Formatar(NossoNumero,8,false,'0');
    end;
 
    ADigitoNossoNumero := Modulo10(ACodigoAgencia + ACarteira + ANossoNumero);
@@ -117,7 +117,7 @@ begin
       ACodigoAgencia := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0');
       ANossoNumero := Formatar(NossoNumero,10,false,'0');
       ANumeroConta := Formatar(Cedente.ContaBancaria.NumeroConta,5,false,'0');
-      ADigitoNossoNumero := Modulo10(ACodigoAgencia + ANumeroConta + ACarteira + ANossoNumero);
+      ADigitoNossoNumero := Modulo10(ACodigoAgencia + ACarteira + ANossoNumero);
       ADigitoAgenciaConta := Modulo10(ACodigoAgencia + ANumeroConta);
    end;
 
