@@ -115,7 +115,7 @@ begin
    begin
       ACarteira := Formatar(Carteira,3,false,'0');
       ACodigoAgencia := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0');
-      ANossoNumero := Formatar(NossoNumero,8,false,'0');
+      ANossoNumero := Formatar(NossoNumero,10,false,'0');
       ANumeroConta := Formatar(Cedente.ContaBancaria.NumeroConta,5,false,'0');
       ADigitoNossoNumero := Modulo10(ACodigoAgencia + ACarteira + ANossoNumero);
       ADigitoAgenciaConta := Modulo10(ACodigoAgencia + ANumeroConta);
@@ -128,10 +128,8 @@ procedure TRLBanco707.FormatarBoleto(ATitulo: TRLBTitulo; var AAgenciaCodigoCede
 begin
   with ATitulo do
   begin
-    AAgenciaCodigoCedente := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0') + '-' +
-        Formatar(Cedente.ContaBancaria.fDigitoAgencia,1,false,'0') + '/' +
-        Formatar(Cedente.ContaBancaria.fNumeroConta,7,false,'0') + '-' +
-        Formatar(Cedente.ContaBancaria.fDigitoConta,1,false,'0');
+    AAgenciaCodigoCedente := Formatar(Cedente.ContaBancaria.CodigoAgencia,4,false,'0') + '/' +
+        Formatar('000443310',9,false,'0');
 
 //     + '/' + Formatar(Cedente.CodigoCedente,5,false,'0') + '-' + Cedente.DigitoCodigoCedente;
 
